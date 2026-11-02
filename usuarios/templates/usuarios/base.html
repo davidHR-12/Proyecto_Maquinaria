@@ -205,7 +205,9 @@
             font-weight: 500;
         }
         .mq-user-chip i { font-size: 1.5rem; color: var(--mq-steel); }
-        .mq-logout {
+        
+        /* Estilos generales para botones de acción en topbar (Volver al Home y Cerrar sesión) */
+        .mq-topbar-btn {
             display: inline-flex;
             align-items: center;
             gap: .45rem;
@@ -215,8 +217,9 @@
             font-weight: 600;
             padding: .5rem .95rem;
             border-radius: 10px;
+            text-decoration: none;
         }
-        .mq-logout:hover { background: var(--mq-concrete); color: var(--mq-ink); }
+        .mq-topbar-btn:hover { background: var(--mq-concrete); color: var(--mq-ink); }
 
         /* ---------- Contenido ---------- */
         .mq-content { flex: 1; padding: 0 1.25rem; }
@@ -257,8 +260,8 @@
             .mq-topbar { padding: 0 1rem; }
         }
         @media (max-width: 575.98px) {
-            .mq-user-chip span, .mq-logout span { display: none; }
-            .mq-logout { padding: .5rem .7rem; }
+            .mq-user-chip span, .mq-topbar-btn span { display: none; }
+            .mq-topbar-btn { padding: .5rem .7rem; }
         }
         @media (prefers-reduced-motion: reduce) {
             .mq-sidebar, .mq-overlay { transition: none; }
@@ -379,9 +382,15 @@
                     <span>{{ nombre_usuario }}</span>
                 </div>
 
+                <!-- Botón para volver al index.html con name 'home' -->
+                <a href="{% url 'index' %}" class="mq-topbar-btn" title="Volver al inicio">
+                    <i class="bi bi-house"></i>
+                    <span>Volver a la Pag de Inicio</span>
+                </a>
+
                 <form method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
-                    <button class="mq-logout" type="submit">
+                    <button class="mq-topbar-btn" type="submit">
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Cerrar sesión</span>
                     </button>
